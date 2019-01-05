@@ -45,7 +45,7 @@ public class MenuListener implements Listener {
 
                 if(clickedButton.containsData(ButtonOptions.CANCEL_EVENT.getIdentifier())) {
 
-                    if (((boolean) clickedButton.getItemData().get(ButtonOptions.CANCEL_EVENT.getIdentifier()) != false)) {
+                    if (((boolean) clickedButton.getItemData().get(ButtonOptions.CANCEL_EVENT.getIdentifier()))) {
                         event.setCancelled(true);
                     }
 

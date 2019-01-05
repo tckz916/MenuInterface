@@ -117,7 +117,7 @@ public class MenuUtil {
 			list.addAll( Arrays.asList( cl.getDeclaredFields() ) );
 		while ( !(cl = cl.getSuperclass()).isAssignableFrom(Object.class) );
 
-		return list.toArray( new Field[ list.size() ] );
+		return list.toArray(new Field[0]);
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class MenuUtil {
 				classes.add(o.getClass());
 			}
 
-			final Constructor<T> c = clazz.getDeclaredConstructor(classes.toArray( new Class[classes.size()] ));
+			final Constructor<T> c = clazz.getDeclaredConstructor(classes.toArray(new Class[0]));
 			c.setAccessible(true);
 
 			return c.newInstance(args);

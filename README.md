@@ -1,5 +1,6 @@
 # MenuInterface
 In order to use this as your dependency
+```
     <repositories>
         <repository>
             <id>jitpack.io</id>
@@ -14,3 +15,4 @@ In order to use this as your dependency
             <version>1.1</version>
         </dependency>
     </dependencies>
+```

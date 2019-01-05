@@ -40,6 +40,7 @@ public class PagedMenu extends IMenu {
 
         size = getSize();
 
+
         if (getEmptySlots() % pagedButtons.size() == 0) {
             pagesRequired = pagedButtons.size() / getEmptySlots();
         } else if (pagedButtons.size() <= getEmptySlots()) {
@@ -57,6 +58,18 @@ public class PagedMenu extends IMenu {
             Inventory inventory = pages.containsKey(currentPage) ? pages.get(currentPage) : pages.put(currentPage, Bukkit.createInventory(this, size, getTitle().replace("%current%", "" + currentPage).replace("%available%", "" + pagesRequired)));
 
             if (inventory == null) inventory = pages.get(currentPage);
+
+            if(pagesRequired == 1){
+
+                if(!inventoriesWithDummies.contains(currentPage)) {
+                    setDummies(inventory);
+                    inventoriesWithDummies.add(currentPage);
+                }
+
+                inventory.addItem(button.getItem());
+                continue;
+
+            }
 
             if(!inventoriesWithDummies.contains(currentPage)) {
                 setDummies(inventory);

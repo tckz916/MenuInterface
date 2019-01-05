@@ -234,13 +234,15 @@ public abstract class IMenu implements InventoryHolder, Listener {
 
         if(currentMenu.getParent() == null) return currentMenu.getChilds();
 
-        while (currentMenu.getParent() == null) {
+        while (currentMenu.getParent() != null) {
 
             pages.putAll(currentMenu.childs);
 
             currentMenu = currentMenu.getParent();
 
         }
+
+        pages.putAll(currentMenu.childs);
 
         return pages;
 

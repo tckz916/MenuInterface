@@ -16,3 +16,6 @@ In order to use this as your dependency
         </dependency>
     </dependencies>
 ```
+
+# Wiki
+https://github.com/MisterZet/MenuInterface/wiki

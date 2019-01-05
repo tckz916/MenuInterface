@@ -133,7 +133,7 @@ abstract public class IMenuButton implements Cloneable {
      */
 
     public IMenuButton assignData(String key, Object object){
-        if(getItemData().containsKey(key)) getItemData().remove(key);
+        getItemData().remove(key);
         getItemData().put(key,object); return this;
     }
 
@@ -175,8 +175,8 @@ abstract public class IMenuButton implements Cloneable {
 
         ItemStack first = getItem();
 
-        if(first == null || second == null){
-            return similar;
+        if(first == null){
+            return false;
         }
 
         boolean sameTypeId = (first.getType() == second.getType());

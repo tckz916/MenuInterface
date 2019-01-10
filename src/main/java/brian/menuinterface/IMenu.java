@@ -1,15 +1,12 @@
 package brian.menuinterface;
 
-
 import brian.menuinterface.animation.MenuAnimation;
 import brian.menuinterface.button.IMenuButton;
 import brian.menuinterface.button.PagedButton;
 import brian.menuinterface.design.MenuDesigner;
-import brian.menuinterface.design.MenuDesigner;
 import brian.menuinterface.events.ButtonClickEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
@@ -23,7 +20,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public abstract class IMenu implements InventoryHolder, Listener {
+public abstract class IMenu implements InventoryHolder {
 
     /**
      * A list of {@link IMenuButton} they are set later when {@link IMenu#build()} is ran

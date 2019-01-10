@@ -16,129 +16,143 @@ import java.util.Map;
  */
 
 public class MenuDesigner {
-    /**
-     * Represents a character and a IMenuButton
-     */
-    Map<String, IMenuButton> items = new HashMap<>();
-    /**
-     * Represents a row and a characters
-     */
-    Map<Integer, String> rowChars = new HashMap<>();
+	/**
+	 * Represents a character and a IMenuButton
+	 */
+	Map<String, IMenuButton> items = new HashMap<>();
+	/**
+	 * Represents a row and a characters
+	 */
+	Map<Integer, String> rowChars = new HashMap<>();
 
-    private MenuDesigner(){
-    }
-    public static MenuDesigner create(){
-        return new MenuDesigner();
-    }
+	private MenuDesigner() {}
 
-    /**
-     * @param character represents a character to replace with item
-     * @param item replaces character with the item.
-     * @return returns {@link #MenuDesigner()}
-     */
+	public static MenuDesigner create() {
+		return new MenuDesigner();
+	}
 
-    public MenuDesigner setItem(String character, ItemStack item){
-        items.put(character, new MenuButton(item, -1, DefaultButtons.FILLER));
-        return this;
-    }
+	/**
+	 * @param character
+	 *            represents a character to replace with item
+	 * @param item
+	 *            replaces character with the item.
+	 * @return returns {@link #MenuDesigner()}
+	 */
 
-    /**
-     * @param character represents a character to replace with item
-     * @param button replaces character with the button
-     * @return returns {@link #MenuDesigner()}
-     */
+	public MenuDesigner setItem(String character, ItemStack item) {
+		items.put(character, new MenuButton(item, -1, DefaultButtons.FILLER));
+		return this;
+	}
 
-    public MenuDesigner setButton(String character, IMenuButton button){
-        items.put(character, button);
-        return this;
-    }
+	/**
+	 * @param character
+	 *            represents a character to replace with item
+	 * @param button
+	 *            replaces character with the button
+	 * @return returns {@link #MenuDesigner()}
+	 */
 
-    /**
-     * @param row = represents an number of inventory row.
-     * @param design = is a string that must contains 9 characters, if not a {@link IncorrectRowSizeException} will be thrown
-     * @return returns {@link #MenuDesigner()}
-     */
+	public MenuDesigner setButton(String character, IMenuButton button) {
+		items.put(character, button);
+		return this;
+	}
 
-    public MenuDesigner setDesign(int row, String design){
-        if(design.length() > 9 || design.length() < 9){
+	/**
+	 * @param row
+	 *            = represents an number of inventory row.
+	 * @param design
+	 *            = is a string that must contains 9 characters, if not a
+	 *            {@link IncorrectRowSizeException} will be thrown
+	 * @return returns {@link #MenuDesigner()}
+	 */
 
-            try {
-                throw new IncorrectRowSizeException("Incorrect row design size. Required: 9, found: " + design.length());
-            } catch (IncorrectRowSizeException e) {
-                e.printStackTrace();
-            }
+	public MenuDesigner setDesign(int row, String design) {
+		if (design.length() > 9 || design.length() < 9) {
 
-        }
-        rowChars.put(row, design);
-        return this;
-    }
+			try {
+				throw new IncorrectRowSizeException(
+						"Incorrect row design size. Required: 9, found: " + design.length());
+			} catch (IncorrectRowSizeException e) {
+				e.printStackTrace();
+			}
 
-    /**
-     * Applies design to the menu in buttons form.
-     * It adds the items (fillers) to the ButtonList in {@link IMenu#buttons}
-     * @param menu is a {@link IMenu}
-     */
+		}
+		rowChars.put(row, design);
+		return this;
+	}
 
-    public void applyAsButtons(IMenu menu){
-        for(int row : rowChars.keySet()) {
+	/**
+	 * Applies design to the menu in buttons form.
+	 * It adds the items (fillers) to the ButtonList in {@link IMenu#buttons}
+	 * 
+	 * @param menu
+	 *            is a {@link IMenu}
+	 */
 
-            String rowDesign = rowChars.get(row);
-            int currentSlot = 0;
+	public void applyAsButtons(IMenu menu) {
+		for (int row : rowChars.keySet()) {
 
-            for (Character character : rowDesign.toCharArray()) {
-                if (!character.toString().equalsIgnoreCase("S") && items.containsKey(character.toString())) {
+			String rowDesign = rowChars.get(row);
+			int currentSlot = 0;
 
-                    int slot = currentSlot;
-                    if (row != 1) slot = ((row - 1) * 9) + currentSlot;
+			for (Character character : rowDesign.toCharArray()) {
+				if (!character.toString().equalsIgnoreCase("S") && items.containsKey(character.toString())) {
 
-                    IMenuButton button = items.get(character.toString()).clone();
-                    button.setSlot(slot);
+					int slot = currentSlot;
+					if (row != 1)
+						slot = ((row - 1) * 9) + currentSlot;
 
-                    menu.addButton(button);
+					IMenuButton button = items.get(character.toString()).clone();
+					button.setSlot(slot);
 
-                }
-                currentSlot++;
-            }
-        }
-    }
+					menu.addButton(button);
 
-    /**
-     * Applies design in items form aka sets the items
-     * @param menu is a {@link IMenu}
-     */
+				}
+				currentSlot++;
+			}
+		}
+	}
 
-    public void applyAsItems(IMenu menu){
-        for(int row : rowChars.keySet()) {
+	/**
+	 * Applies design in items form aka sets the items
+	 * 
+	 * @param menu
+	 *            is a {@link IMenu}
+	 */
 
-            String rowDesign = rowChars.get(row);
-            int currentSlot = 0;
+	public void applyAsItems(IMenu menu) {
+		for (int row : rowChars.keySet()) {
 
-            Inventory inventory = menu.getInventory();
+			String rowDesign = rowChars.get(row);
+			int currentSlot = 0;
 
-            for (Character character : rowDesign.toCharArray()) {
-                if (!character.toString().equalsIgnoreCase("S") && items.containsKey(character.toString())) {
+			Inventory inventory = menu.getInventory();
 
-                    int slot = currentSlot;
-                    if (row != 1) slot = ((row - 1) * 9) + currentSlot;
+			for (Character character : rowDesign.toCharArray()) {
+				if (!character.toString().equalsIgnoreCase("S") && items.containsKey(character.toString())) {
 
-                    IMenuButton button = items.get(character.toString()).clone();
-                    button.setSlot(slot);
+					int slot = currentSlot;
+					if (row != 1)
+						slot = ((row - 1) * 9) + currentSlot;
 
-                    menu.addButton(button);
-                    inventory.setItem(slot, button.getItem());
+					IMenuButton button = items.get(character.toString()).clone();
+					button.setSlot(slot);
 
-                }
-                currentSlot++;
-            }
-        }
-    }
+					menu.addButton(button);
+					inventory.setItem(slot, button.getItem());
 
-    public Map<Integer, String> getRowChars() {
-        return rowChars;
-    }
+				}
+				currentSlot++;
+			}
+		}
+	}
 
-    public Map<String, IMenuButton> getItems() {
-        return items;
-    }
+	public Map<Integer, String> getRowChars() {
+		return rowChars;
+	}
+
+	public Map<String, IMenuButton> getItems() {
+		return items;
+	}
 
 }

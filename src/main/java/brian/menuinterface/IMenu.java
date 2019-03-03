@@ -8,7 +8,9 @@ import brian.menuinterface.events.ButtonClickEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -54,9 +56,14 @@ public abstract class IMenu implements InventoryHolder {
 		this.openListener = openListener;
 	}
 
+	public void setPickupListener(Consumer<InventoryPickupItemEvent> pickupListener) {
+		this.pickupListener = pickupListener;
+	}
+
 	private Consumer<ButtonClickEvent> clickListener;
 	private Consumer<InventoryCloseEvent> closeListener;
 	private Consumer<InventoryOpenEvent> openListener;
+	private Consumer<InventoryPickupItemEvent> pickupListener;
 
 	private MenuDesigner design;
 
@@ -498,4 +505,9 @@ public abstract class IMenu implements InventoryHolder {
 		return this;
 
 	}
+
+	public Consumer<InventoryMoveItemEvent> getMoveListener() {
+		return moveListener;
+	}
+
 }

@@ -51,7 +51,7 @@ abstract public class IMenuButton implements Cloneable {
 	 *            represents a {@link org.bukkit.inventory.Inventory} slot where the
 	 *            ItemStack is going to be placed.
 	 * @param defaultButton
-	 *            is a one of the DefaultButtons which gives {@link IMenuButton} a
+	 *            is a one of the DefaultButtons which gives {@link brian.menuinterface.button.IMenuButton} a
 	 *            identifier and a task if defined.
 	 */
 
@@ -73,7 +73,7 @@ abstract public class IMenuButton implements Cloneable {
 	 *            represents a {@link org.bukkit.inventory.Inventory} slot where the
 	 *            ItemStack is going to be placed.
 	 * @param defaultButton
-	 *            is a one of the DefaultButtons which gives {@link IMenuButton} a
+	 *            is a one of the DefaultButtons which gives {@link brian.menuinterface.button.IMenuButton} a
 	 *            identifier and a task if defined.
 	 * @param value
 	 *            is a value that will be set for an task to find it. For example we
@@ -114,10 +114,10 @@ abstract public class IMenuButton implements Cloneable {
 	 *
 	 * @param task
 	 *            a custom task which automates the button.
-	 * @return a {@link IMenuButton}
+	 * @return a {@link brian.menuinterface.button.IMenuButton}
 	 */
 
-	public IMenuButton assignTask(DefaultButtons task) {
+	public brian.menuinterface.button.IMenuButton assignTask(DefaultButtons task) {
 
 		this.clickEvent = task.getConsumer();
 		this.identifier = task.getIdentifier();
@@ -134,10 +134,10 @@ abstract public class IMenuButton implements Cloneable {
 	 * @param value
 	 *            is to set custom value by the task identifier, for example used in
 	 *            "open" the value is the menu name.
-	 * @return a {@link IMenuButton}
+	 * @return a {@link brian.menuinterface.button.IMenuButton}
 	 */
 
-	public IMenuButton assignTask(DefaultButtons task, Object value) {
+	public brian.menuinterface.button.IMenuButton assignTask(DefaultButtons task, Object value) {
 
 		this.clickEvent = task.getConsumer();
 		this.identifier = task.getIdentifier();
@@ -162,10 +162,10 @@ abstract public class IMenuButton implements Cloneable {
 	 *            is the key of the map
 	 * @param object
 	 *            is the value to be stored
-	 * @return a {@link IMenuButton}
+	 * @return a {@link brian.menuinterface.button.IMenuButton}
 	 */
 
-	public IMenuButton assignData(String key, Object object) {
+	public brian.menuinterface.button.IMenuButton assignData(String key, Object object) {
 		getItemData().remove(key);
 		getItemData().put(key, object);
 		return this;
@@ -245,10 +245,10 @@ abstract public class IMenuButton implements Cloneable {
 	 *            a button option
 	 * @param value
 	 *            a {@link Boolean} value
-	 * @return a {@link IMenuButton}
+	 * @return a {@link brian.menuinterface.button.IMenuButton}
 	 */
 
-	public IMenuButton assignOption(ButtonOptions option, boolean value) {
+	public brian.menuinterface.button.IMenuButton assignOption(ButtonOptions option, boolean value) {
 		assignData(option.getIdentifier(), value);
 		return this;
 	}
@@ -284,22 +284,22 @@ abstract public class IMenuButton implements Cloneable {
 	 *
 	 * @param slot
 	 *            sets a slot of a {@link org.bukkit.inventory.Inventory}
-	 * @return a {@link IMenuButton}
+	 * @return a {@link brian.menuinterface.button.IMenuButton}
 	 */
 
-	public IMenuButton setSlot(int slot) {
+	public brian.menuinterface.button.IMenuButton setSlot(int slot) {
 		this.slot = slot;
 		return this;
 	}
 
 	/**
-	 * @return a copy of {@link IMenuButton}
+	 * @return a copy of {@link brian.menuinterface.button.IMenuButton}
 	 */
 
 	@Override
-	public IMenuButton clone() {
+	public brian.menuinterface.button.IMenuButton clone() {
 		try {
-			return (IMenuButton) super.clone();
+			return (brian.menuinterface.button.IMenuButton) super.clone();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

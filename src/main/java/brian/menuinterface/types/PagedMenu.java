@@ -1,10 +1,11 @@
 package brian.menuinterface.types;
 
+import brian.menuinterface.IMenu;
+import brian.menuinterface.button.DefaultButtons;
+import brian.menuinterface.button.PagedButton;
+import brian.menuinterface.exceptions.InventoryEmptyException;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import brian.menuinterface.IMenu;
-import brian.menuinterface.button.*;
-import brian.menuinterface.exceptions.InventoryEmptyException;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 
@@ -21,8 +22,8 @@ public class PagedMenu extends IMenu {
 		setTitle(title);
 	}
 
-	public static PagedMenu create(int rows, String title) {
-		return new PagedMenu(rows, title);
+	public static brian.menuinterface.types.PagedMenu create(int rows, String title) {
+		return new brian.menuinterface.types.PagedMenu(rows, title);
 	}
 
 	@Override

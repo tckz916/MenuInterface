@@ -33,8 +33,8 @@ public class MenuAnimation {
 
 	private MenuAnimation() {}
 
-	public static MenuAnimation create() {
-		return new MenuAnimation();
+	public static brian.menuinterface.animation.MenuAnimation create() {
+		return new brian.menuinterface.animation.MenuAnimation();
 	}
 
 	/**
@@ -66,9 +66,9 @@ public class MenuAnimation {
 	 *            frame position
 	 * @param designer
 	 *            is a design that will be used on that frame.
-	 * @return a {@link MenuAnimation}
+	 * @return a {@link brian.menuinterface.animation.MenuAnimation}
 	 */
-	public MenuAnimation setFrame(int frame, MenuDesigner designer) {
+	public brian.menuinterface.animation.MenuAnimation setFrame(int frame, MenuDesigner designer) {
 		if (frames.containsKey(frame))
 			frames.remove(frame);
 		frames.put(frame, designer);
@@ -158,7 +158,7 @@ public class MenuAnimation {
 				if (taskToDoEveryFrame != null)
 					taskToDoEveryFrame.accept(menu);
 				MenuDesigner design = frames.get(currentFrame);
-				design.applyAsItems(menu);
+				design.applyAsButtons(menu);
 
 				currentFrame++;
 

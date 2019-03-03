@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public abstract class IMenu implements InventoryHolder {
 
 	/**
-	 * A list of {@link IMenuButton} they are set later when {@link IMenu#build()}
+	 * A list of {@link IMenuButton} they are set later when {@link brian.menuinterface.IMenu#build()}
 	 * is ran
 	 */
 	private List<IMenuButton> buttons = new ArrayList<>();
@@ -36,8 +36,8 @@ public abstract class IMenu implements InventoryHolder {
 
 	/**
 	 * Parent / Child system
-	 * Where String is a identifier for the {@link IMenu}
-	 * Where IMenu is a child of {@link IMenu}
+	 * Where String is a identifier for the {@link brian.menuinterface.IMenu}
+	 * Where IMenu is a child of {@link brian.menuinterface.IMenu}
 	 */
 
 	private Map<String, IMenu> childs = new HashMap<>();
@@ -60,7 +60,7 @@ public abstract class IMenu implements InventoryHolder {
 
 	private MenuDesigner design;
 
-	private IMenu parent;
+	private brian.menuinterface.IMenu parent;
 	private int size = 27;
 	final private int maxSize = 54;
 	private String title = "Inventory Title";
@@ -72,8 +72,8 @@ public abstract class IMenu implements InventoryHolder {
 	private MenuAnimation animation;
 
 	/**
-	 * This method should be ran whenever {@link IMenu#build()} is called.
-	 * 
+	 * This method should be ran whenever {@link brian.menuinterface.IMenu#build()} is called.
+	 *
 	 * @param inventory
 	 *            is a Inventory "_"
 	 */
@@ -96,7 +96,7 @@ public abstract class IMenu implements InventoryHolder {
 
 	/**
 	 * @param rebuild
-	 *            sets a rule if the {@link IMenu#build()} needs to be called again
+	 *            sets a rule if the {@link brian.menuinterface.IMenu#build()} needs to be called again
 	 *            or if {@link #inventory} is null
 	 * @return a Inventory
 	 */
@@ -112,13 +112,13 @@ public abstract class IMenu implements InventoryHolder {
 
 	/**
 	 * Adds button to the {@link #buttons} list
-	 * 
+	 *
 	 * @param button
 	 *            is a object that extends {@link IMenuButton}
-	 * @return a {@link IMenu}
+	 * @return a {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu addButton(IMenuButton button) {
+	public brian.menuinterface.IMenu addButton(IMenuButton button) {
 
 		buttons.add(button);
 		return this;
@@ -126,7 +126,7 @@ public abstract class IMenu implements InventoryHolder {
 
 	/**
 	 * Tries to find a {@link IMenuButton} by {@link ItemStack}
-	 * 
+	 *
 	 * @param compare
 	 *            is a {@link ItemStack} that should be compared when looking for
 	 *            {@link IMenuButton}
@@ -139,7 +139,7 @@ public abstract class IMenu implements InventoryHolder {
 
 	/**
 	 * Tries to find a {@link IMenuButton} by {@link IMenuButton#itemData} key
-	 * 
+	 *
 	 * @param key
 	 *            is a map key that should be searched for in
 	 *            {@link IMenuButton#itemData}
@@ -152,7 +152,7 @@ public abstract class IMenu implements InventoryHolder {
 
 	/**
 	 * Tries to find a {@link IMenuButton} by {@link IMenuButton#getIdentifier()}
-	 * 
+	 *
 	 * @param identifier
 	 *            is a {@link IMenuButton#getIdentifier()}
 	 * @return a null or a {@link IMenuButton}
@@ -164,37 +164,37 @@ public abstract class IMenu implements InventoryHolder {
 	}
 
 	/**
-	 * Sets a parent of {@link IMenu}
-	 * 
+	 * Sets a parent of {@link brian.menuinterface.IMenu}
+	 *
 	 * @param menu
-	 *            is a parent of this {@link IMenu}
-	 * @return a {@link IMenu}
+	 *            is a parent of this {@link brian.menuinterface.IMenu}
+	 * @return a {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu setParent(IMenu menu) {
+	public brian.menuinterface.IMenu setParent(brian.menuinterface.IMenu menu) {
 		parent = menu;
 		return this;
 	}
 
 	/**
-	 * @return a parent of this {@link IMenu}
+	 * @return a parent of this {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu getParent() {
+	public brian.menuinterface.IMenu getParent() {
 		return parent;
 	}
 
 	/**
 	 * Assigns data to {@link #inventoryData}
-	 * 
+	 *
 	 * @param key
 	 *            is a key for the map
 	 * @param object
 	 *            is a value for the map
-	 * @return a {@link IMenu}
+	 * @return a {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu assignData(String key, Object object) {
+	public brian.menuinterface.IMenu assignData(String key, Object object) {
 		getInventoryData().put(key, object);
 		return this;
 	}
@@ -205,7 +205,7 @@ public abstract class IMenu implements InventoryHolder {
 	public Map<String, Object> getInventoryData() {
 		return inventoryData;
 	}
-	
+
 	/**
 	 * @return specified data from inventory
 	 */
@@ -226,11 +226,11 @@ public abstract class IMenu implements InventoryHolder {
 	}
 
 	/**
-	 * @return a {@link IMenu} first menu that was created.
-	 *         Can be called anywhere in the {@link IMenu}
+	 * @return a {@link brian.menuinterface.IMenu} first menu that was created.
+	 *         Can be called anywhere in the {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu getMainMenu() {
+	public brian.menuinterface.IMenu getMainMenu() {
 		if (parent == null)
 			return this;
 		else
@@ -241,10 +241,10 @@ public abstract class IMenu implements InventoryHolder {
 	 * @param name
 	 *            name of the child
 	 * @param menu
-	 *            {@link IMenu}
-	 * @return a {@link IMenu}
+	 *            {@link brian.menuinterface.IMenu}
+	 * @return a {@link brian.menuinterface.IMenu}
 	 */
-	public IMenu addChild(String name, IMenu menu) {
+	public brian.menuinterface.IMenu addChild(String name, brian.menuinterface.IMenu menu) {
 		menu.setParent(this);
 		childs.put(name, menu);
 		return this;
@@ -252,16 +252,16 @@ public abstract class IMenu implements InventoryHolder {
 
 	/**
 	 * @param name
-	 *            of a child {@link IMenu}
-	 * @return link {@link IMenu}
+	 *            of a child {@link brian.menuinterface.IMenu}
+	 * @return link {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu getChild(String name) {
+	public brian.menuinterface.IMenu getChild(String name) {
 		return childs.get(name);
 	}
 
 	/**
-	 * @return returns all childs of {@link IMenu}
+	 * @return returns all childs of {@link brian.menuinterface.IMenu}
 	 */
 
 	public Map<String, IMenu> getChilds() {
@@ -276,7 +276,7 @@ public abstract class IMenu implements InventoryHolder {
 
 		Map<String, IMenu> pages = new HashMap<>();
 
-		IMenu currentMenu = this;
+		brian.menuinterface.IMenu currentMenu = this;
 
 		if (currentMenu.getParent() == null)
 			return currentMenu.getChilds();
@@ -306,10 +306,10 @@ public abstract class IMenu implements InventoryHolder {
 	/**
 	 * @param rowsCount
 	 *            is a number not bigger than 6 as max inventory size is 54.
-	 * @return a {@link IMenu}
+	 * @return a {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu setInventorySize(int rowsCount) {
+	public brian.menuinterface.IMenu setInventorySize(int rowsCount) {
 
 		int equals = rowsCount * 9;
 
@@ -395,17 +395,17 @@ public abstract class IMenu implements InventoryHolder {
 
 	/**
 	 * @param design
-	 *            sets design of an menu {@link IMenu}
-	 * @return a {@link IMenu}
+	 *            sets design of an menu {@link brian.menuinterface.IMenu}
+	 * @return a {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu setDesign(MenuDesigner design) {
+	public brian.menuinterface.IMenu setDesign(MenuDesigner design) {
 		this.design = design;
 		return this;
 	}
 
 	/**
-	 * @return a Design of an {@link IMenu} {@link MenuDesigner}
+	 * @return a Design of an {@link brian.menuinterface.IMenu} {@link MenuDesigner}
 	 */
 
 	public MenuDesigner getDesign() {
@@ -425,10 +425,10 @@ public abstract class IMenu implements InventoryHolder {
 	/**
 	 * @param inventory
 	 *            is where to place dummies
-	 * @return a {@link IMenu}
+	 * @return a {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu setDummies(Inventory inventory) {
+	public brian.menuinterface.IMenu setDummies(Inventory inventory) {
 
 		/*
 		 * First we gotta set filler dummies
@@ -461,10 +461,10 @@ public abstract class IMenu implements InventoryHolder {
 	 *            is a identifier of a button in {@link #buttons}
 	 * @param inventory
 	 *            is a {@link Inventory}
-	 * @return a {@link IMenu}
+	 * @return a {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu setButtonByIdentifer(String identifier, Inventory inventory) {
+	public brian.menuinterface.IMenu setButtonByIdentifer(String identifier, Inventory inventory) {
 
 		IMenuButton button = findButtonByIdentifier(identifier);
 		if (button != null) {
@@ -482,15 +482,15 @@ public abstract class IMenu implements InventoryHolder {
 	}
 
 	/**
-	 * Changes title of {@link Inventory} and {@link IMenu}
-	 * 
+	 * Changes title of {@link Inventory} and {@link brian.menuinterface.IMenu}
+	 *
 	 * @param title
 	 *            is a string, make sure that it doesn't exceed minecraft limit
 	 *            which is 32
-	 * @return a {@link IMenu}
+	 * @return a {@link brian.menuinterface.IMenu}
 	 */
 
-	public IMenu changeTitle(String title) {
+	public brian.menuinterface.IMenu changeTitle(String title) {
 
 		setTitle(title);
 		getInventory().getViewers()

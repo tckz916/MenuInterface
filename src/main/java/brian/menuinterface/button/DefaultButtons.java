@@ -69,7 +69,7 @@ public enum DefaultButtons {
 	/**
 	 * Open can be used in any {@link IMenu} and forwards who clicked to defined
 	 * {@link IMenu}, if there's no page found, throws a
-	 * {@link brian.menuinterface.exceptions.PageNotFoundException}
+	 * {@link PageNotFoundException}
 	 */
 
 	OPEN("open", event -> {

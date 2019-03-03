@@ -10,8 +10,8 @@ public class StandardMenu extends IMenu {
         setTitle(title);
         setInventorySize(rows);
     }
-    public static StandardMenu create(int rows, String title){
-        return new StandardMenu(rows,title);
+    public static brian.menuinterface.types.StandardMenu create(int rows, String title){
+        return new brian.menuinterface.types.StandardMenu(rows,title);
     }
 
     @Override

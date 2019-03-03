@@ -506,8 +506,4 @@ public abstract class IMenu implements InventoryHolder {
 
 	}
 
-	public Consumer<InventoryMoveItemEvent> getMoveListener() {
-		return moveListener;
-	}
-
 }

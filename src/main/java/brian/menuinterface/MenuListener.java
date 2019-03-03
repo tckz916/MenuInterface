@@ -86,7 +86,11 @@ public class MenuListener implements Listener {
 			if (clickedButton.getClickEvent() != null) {
 				clickedButton.getClickEvent().accept(buttonClickEvent);
 			} else if (menu.getClickListener() != null)
-				menu.getClickListener().accept(buttonClickEvent);
+			menu.getClickListener().accept(buttonClickEvent);
+
+		} else {
+
+			if(menu.getItemClickEvent() != null) menu.getItemClickEvent().accept(event);
 
 		}
 	}
@@ -109,7 +113,7 @@ public class MenuListener implements Listener {
 	}
 
 	@EventHandler
-	public void onClose(InventoryOpenEvent event) {
+	public void onOpen(InventoryOpenEvent event) {
 
 		InventoryHolder holder = event.getInventory().getHolder();
 

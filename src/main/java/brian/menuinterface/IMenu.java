@@ -7,10 +7,7 @@ import brian.menuinterface.design.MenuDesigner;
 import brian.menuinterface.events.ButtonClickEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.inventory.InventoryPickupItemEvent;
+import org.bukkit.event.inventory.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -44,8 +41,8 @@ public abstract class IMenu implements InventoryHolder {
 
 	private Map<String, IMenu> childs = new HashMap<>();
 
-	public void setClickListener(Consumer<ButtonClickEvent> clickListener) {
-		this.clickListener = clickListener;
+	public void setButtonClickListener(Consumer<ButtonClickEvent> buttonClickListener) {
+		this.buttonClickListener = buttonClickListener;
 	}
 
 	public void setCloseListener(Consumer<InventoryCloseEvent> closeListener) {
@@ -60,10 +57,15 @@ public abstract class IMenu implements InventoryHolder {
 		this.pickupListener = pickupListener;
 	}
 
-	private Consumer<ButtonClickEvent> clickListener;
+	public void setItemClickEvent(Consumer<InventoryClickEvent> itemClickEvent) {
+		this.itemClickEvent = itemClickEvent;
+	}
+
+	private Consumer<ButtonClickEvent> buttonClickListener;
 	private Consumer<InventoryCloseEvent> closeListener;
 	private Consumer<InventoryOpenEvent> openListener;
 	private Consumer<InventoryPickupItemEvent> pickupListener;
+	private Consumer<InventoryClickEvent> itemClickEvent;
 
 	private MenuDesigner design;
 
@@ -373,7 +375,7 @@ public abstract class IMenu implements InventoryHolder {
 	 */
 
 	public Consumer<ButtonClickEvent> getClickListener() {
-		return clickListener;
+		return buttonClickListener;
 	}
 
 	/**
@@ -508,5 +510,9 @@ public abstract class IMenu implements InventoryHolder {
 
 	public Consumer<InventoryPickupItemEvent> getPickupListener() {
 		return pickupListener;
+	}
+
+	public Consumer<InventoryClickEvent> getItemClickEvent() {
+		return itemClickEvent;
 	}
 }
